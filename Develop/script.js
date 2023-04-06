@@ -3,9 +3,6 @@ var generateBtn = document.querySelector("#generate");
 var confirmBtn =  document.querySelector("#confirm");
 var confirmArea = document.querySelector(".confirmArea");
 var generateArea = document.querySelector(".generateArea");
-
-
-
 var promptArea = document.querySelector(".prompt-area");
 var passwordLength = document.querySelector(".password-length");
 
@@ -15,17 +12,12 @@ var upperCase = document.querySelector("#uppercase");
 var numeric = document.querySelector("#numeric");
 var specialCharacters = document.querySelector("#special-characters");
 
-
-
-
-function showPromptArea() {
-  
- 
+function showPromptArea() { 
   promptArea.style.display = "block";
   generateArea.style.display = "none";
   confirmArea.style.display = "block ";
-
 }
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword(passwordLength.value);
@@ -34,7 +26,6 @@ function writePassword() {
   promptArea.style.display = "none";
   generateArea.style.display = "block";
   confirmArea.style.display = "none";
-
   passwordText.value = password;
 }
 
@@ -56,7 +47,6 @@ function generatePassword(passwordLength) {
 
   if (numeric.checked && !upperCase.checked && !lowerCase.checked && !specialCharacters.checked) {
     passwordSelection = numbers;
-  
   }
 
   if (numeric.checked && upperCase.checked && !lowerCase.checked && !specialCharacters.checked) {
@@ -66,11 +56,11 @@ function generatePassword(passwordLength) {
   if (numeric.checked && upperCase.checked && lowerCase.checked && !specialCharacters.checked) {
      passwordSelection = numbers + alphabetUppercase + alphabetLowercase;
   }
-
-  
+ 
   if (numeric.checked && upperCase.checked && lowerCase.checked && specialCharacters.checked) {
      passwordSelection = numbers + alphabetUppercase + alphabetLowercase + specialCharactersAll;
   }
+  
   if (!numeric.checked && upperCase.checked && !lowerCase.checked && !specialCharacters.checked) {
     passwordSelection = alphabetUppercase
   }
@@ -79,18 +69,42 @@ function generatePassword(passwordLength) {
      passwordSelection = alphabetUppercase + alphabetLowercase;
   }
   
-  
   if (!numeric.checked && upperCase.checked && lowerCase.checked && specialCharacters.checked) {
      passwordSelection = alphabetUppercase + alphabetLowercase + specialCharactersAll;
   }
-  if ( passwordLength >= 8 && passwordLength <= 128 ){
 
-  for(var i = 0; i < passwordLength;i++) {
-    var r = Math.floor(Math.random() * passwordSelection.length);
-    password += passwordSelection.charAt(r)
+  if (!numeric.checked && !upperCase.checked && lowerCase.checked && !specialCharacters.checked) {
+    passwordSelection = alphabetLowercase;
   }
-}
- else {window.alert('Password lenght must be between 8 and 128 characters.')}
+
+  if (!numeric.checked && !upperCase.checked && lowerCase.checked && specialCharacters.checked) {
+    passwordSelection = alphabetLowercase + specialCharactersAll;
+  }
+
+  if (numeric.checked && !upperCase.checked && lowerCase.checked && specialCharacters.checked) {
+    passwordSelection = numbers + alphabetLowercase + specialCharactersAll;
+  } 
+
+  if (!numeric.checked && !upperCase.checked && !lowerCase.checked && !specialCharacters.checked) {
+    passwordSelection = specialCharactersAll;
+  }
   
-  return password;
-}
+  if (numeric.checked && !upperCase.checked && !lowerCase.checked && specialCharacters.checked) {
+    passwordSelection = numbers + specialCharactersAll;
+  }
+
+  if (numeric.checked && upperCase.checked && !lowerCase.checked && specialCharacters.checked) {
+    passwordSelection = numbers + alphabetUppercase + specialCharactersAll;
+ }
+
+
+  if ( passwordLength >= 8 && passwordLength <= 128 ){
+    for(var i = 0; i < passwordLength;i++) {
+      var r = Math.floor(Math.random() * passwordSelection.length);
+      password += passwordSelection.charAt(r)
+      }
+    }
+  else {window.alert('Password lenght must be between 8 and 128 characters.')}
+  
+    return password;
+  }

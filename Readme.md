@@ -29,5 +29,5 @@ For this challenge, I was tasked with refactoring the codebase of a password gen
 * Refactored JS to meet the client's demands
 ### Screenshot
 
-![People standing around table.](homework-demo.png)
+![People standing around table.](passworg-generator-screenshot.png)
 
